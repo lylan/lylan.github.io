@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+
+    <!-- Bootstrap -->
+    <link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="__STATIC__/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="__STATIC__/css/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+    <!-- Custom Theme Style -->
+    <link href="__CSS__/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__CSS__/common.css">
+    {block name="css"}{/block}
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+
+        <!--menu  begin-->
+        {include file="public/menu" /}
+        <!--menu end-->
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="__IMG__/img.jpg" alt="">{:session('user_auth.username')}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="javascript:;"> Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li><a href="javascript:;">Help</a></li>
+                                <li><a href="{:url('/admin/logout')}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown hide">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">6</span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li><a>
+                                    <span class="image"><img src="__IMG__/img.jpg" alt="Profile Image" /></span>
+                                    <span>
+                                        <span>John Smith</span>
+                                        <span class="time">3 mins ago</span>
+                                    </span>
+                                    <span class="message">
+                                        Film festivals used to be do-or-die moments for movie makers. They were where...
+                                    </span>
+                                </a></li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                        <strong>See All Alerts</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        {block name="content"}{/block}
+
+
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by Colorlib. More Templates - Collect from <a href="http://www.tp.com/" title="官网" target="_blank">官网</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<!-- jQuery -->
+<script src="__STATIC__/js/jquery.min.js"></script>
+<script src="__JS__/messager.js"></script>
+<!-- Bootstrap -->
+<script src="__STATIC__/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="__STATIC__/js/fastclick.js"></script>
+<!-- NProgress -->
+<script src="__STATIC__/js/nprogress.js"></script>
+<!-- Chart.js -->
+<script src="__STATIC__/js/Chart.min.js"></script>
+<!-- jQuery Sparklines -->
+<script src="__STATIC__/js/jquery.sparkline.min.js"></script>
+<!-- Flot -->
+<script src="__STATIC__/js/jquery.flot.js"></script>
+<script src="__STATIC__/js/jquery.flot.pie.js"></script>
+<script src="__STATIC__/js/jquery.flot.time.js"></script>
+<script src="__STATIC__/js/jquery.flot.stack.js"></script>
+<script src="__STATIC__/js/jquery.flot.resize.js"></script>
+<!-- Flot plugins -->
+<script src="__STATIC__/js/jquery.flot.orderBars.js"></script>
+<script src="__STATIC__/js/jquery.flot.spline.min.js"></script>
+<script src="__STATIC__/js/curvedLines.js"></script>
+<!-- DateJS -->
+<script src="__STATIC__/js/date.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="__STATIC__/js/moment.min.js"></script>
+<script src="__STATIC__/js/daterangepicker.js"></script>
+
+<!-- Custom Theme Scripts -->
+<script src="__JS__/custom.min.js"></script>
+<script src="__JS__/core.js"></script>
+<script>
+    $(function () {
+        $(".return-back").click(function () {
+            window.history.back();
+        });
+    })
+</script>
+{block name="js"}{/block}
+</body>
+</html>

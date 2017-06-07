@@ -1,0 +1,117 @@
+{extend name="public/base"}
+
+{block name="css"}
+<!-- iCheck -->
+<link href="__CSS__/icheck/green.css" rel="stylesheet">
+{/block}
+
+{block name="content"}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{$meta_title}</h3>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>菜单信息<small>System Menu</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <form class="form-horizontal form-label-left" novalidate method="post">
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="title">标题 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="title" class="form-control col-md-7 col-xs-12"  name="title" required="required" type="text" value="{$info['title']|default=''}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="icon">小图标 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="icon" name="icon" class="form-control col-md-7 col-xs-12" value="{$info['icon']|default=''}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="url">链接 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="url" name="url" required="required"class="form-control col-md-7 col-xs-12" value="{$info['url']|default='admin/'}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sort">排序 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="number" id="sort" name="sort" required="required" data-validate-minmax="0,100" class="form-control col-md-7 col-xs-12" value="{$info['sort']|default=0}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" >上级菜单 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="pid" id="pid" class="select2_single form-control" tabindex="-1">
+                                        {volist name="menus" id="item"}
+                                            <option value="{$item['id']}" {if $info['pid'] == $item['id']}selected{/if}>{$item.title_show}</option>
+                                        {/volist}
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="group">分组 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="group" type="text" name="group" data-validate-length-range="5,20" class="optional form-control col-md-7 col-xs-12" value="{$info['group']|default=''}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label for="hide_0" class="control-label col-md-3">是否隐藏 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    是:<input type="radio" class="flat" name="hide" id="hide_1" value="1"  {if isset($info['hide']) && $info['hide']==1}checked{/if}/>
+                                    否:<input type="radio" class="flat" name="hide" id="hide_0" value="0" checked {if isset($info['hide']) && $info['hide']==0}checked{/if}/>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tip">说明 :</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea id="tip" required="required" name="tip" class="form-control col-md-7 col-xs-12">{$info['tip']|default=''}</textarea>
+                                </div>
+                            </div>
+                            <div class="ln_solid"></div>
+                            <input type="hidden" name="id" value="{$info['id']|default=''}">
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button type="button" class="btn btn-primary return-back">取消</button>
+                                    <button id="send" type="submit" class="btn btn-success ajax-post" target-form="form-horizontal">保存</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+
+{/block}
+{block name="js"}
+<!-- validator -->
+<script src="__STATIC__/js/validator.js"></script>
+<!-- iCheck -->
+<script src="__STATIC__/js/icheck.min.js"></script>
+{/block}
