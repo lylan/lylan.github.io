@@ -1,0 +1,88 @@
+{extend name="public/base"}
+
+{block name="content"}
+
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{$meta_title}</h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Hover rows <small>Try hovering over the rows</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a href="{:url('article/add')}" class="btn btn-primary">新增</a></li>
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>作者</th>
+                                <th>标题</th>
+                                <th>是否发布</th>
+                                <th>标签</th>
+                                <th>描述</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {notempty name="list"}
+                            {volist name="list" id="item"}
+                            <tr>
+                                <td scope="row">{$item['id']}</td>
+                                <td>{$item['author']}</td>
+                                <td>{$item['title']}</td>
+                                <td>{$item['status_text']}</td>
+                                <td>{$item['tag']}</td>
+                                <td>{$item['description']}</td>
+                                <td>{$item['create_time']}</td>
+
+                                <td>
+                                    <a title="编辑" href="{:url('edit?id='.$item['id'])}"><i class="fa fa-pencil-square"></i></a>
+                                    <a class="confirm ajax-get" title="删除" href="{:url('del',array('mod' => 'Posts', 'id' =>$item['id']))}"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+
+                            {/volist}
+                            {else /}
+                            <td colspan="8"> aOh! 暂时还没有内容!</td>
+                            {/notempty}
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+
+{/block}

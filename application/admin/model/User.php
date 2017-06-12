@@ -11,8 +11,7 @@ use app\common\model\Base;
 class User extends Base
 {
 
-    protected $table = 'ly_user';  //完整的数据库表
-    protected  $name = 'user'; //不包含前缀的数据库表名
+    protected $name = 'user'; //不包含前缀的数据库表名
     protected $autoWriteTimestamp = 'int'; //默认是int型，也可以修改为datetime 类型
     protected $createTime = 'create_time';  //默认的是 'create_at'
     protected $updateTime = 'update_time';  //默认的是  'update_at'， 如果某个字段不需要自动写入,则可以设置为 false, eg：$updateTime = false;
