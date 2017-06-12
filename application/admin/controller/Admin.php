@@ -19,6 +19,7 @@ class Admin extends Base
     {
         parent::_initialize();
 
+
         if (!is_login() && !in_array($this->url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
             $this->redirect('/admin/index/login');
         }
