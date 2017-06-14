@@ -9,4 +9,11 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-return [];
+return [
+    "topthink\\think-migration\\src\\command\\migrate\\Create",
+    "topthink\\think-migration\\src\\command\\migrate\\Run",
+    "topthink\\think-migration\\src\\command\\migrate\\Rollback",
+    "topthink\\think-migration\\src\\command\\migrate\\Status",
+    "topthink\\think-migration\\src\\command\\seed\\Create",
+    "topthink\\think-migration\\src\\command\\seed\\Run",
+];
