@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use think\Request;
+
 class Access extends Admin
 {
     protected $Group; //用户分组
@@ -101,8 +103,10 @@ class Access extends Admin
         $groupId = input('get.id');
 
         if (IS_POST){
-            $data = input('post');
+            var_dump(222222);
+            $data = Request::instance()->post();
             var_dump($data);
+            die();
         }
 
 
