@@ -97,28 +97,59 @@ class Access extends Admin
 
     /**
      * 授权
+     * @param int $id
+     * @return \think\response\View
      */
-    public function access()
+    public function access($id = 0)
     {
-        $groupId = input('get.id');
 
         if (IS_POST){
-            var_dump(222222);
             $data = Request::instance()->post();
-            var_dump($data);
-            die();
+
+            $id = isset($data['id']) ? $data['id'] : '';
+            $nodes = isset($data['nodes']) ? $data['nodes'] : array();
+            if (!$id) {
+                return $this->error("请选择分组");
+            }
+            if (empty($nodes)) {
+                return $this->error("请选择菜单");
+            }
+
+
+            $where['id'] = array('in', $nodes);
+            $where['pid'] = array('neq', 0);
+            $pid = $this->Menu->where($where)->column('pid');
+
+            $nodes = array_merge($nodes, $pid);
+            $nodes = array_unique($nodes);
+
+            $rules = implode(',', $nodes);
+
+            $res = $this->Group->update(array(
+                'id' => $id,
+                'rules' => $rules
+            ));
+
+            if ($res) {
+                return $this->success("设置成功");
+            } else {
+                return $this->success('设置失败');
+            }
+        } else {
+
+            $list = $this->Menu->select()->toArray();
+
+            $list = list_to_tree($list);
+
+            $group = $this->Group->where('id', $id)->find();
+
+
+            $this->setMeta('角色授权');
+            $this->assign('id', $id);
+            $this->assign('data', $list);
+            return view('access');
+
         }
-
-
-        $list = $this->Menu->select()->toArray();
-
-        $list = list_to_tree($list);
-
-
-
-        $this->setMeta('角色授权');
-        $this->assign('data', $list);
-        return view('access');
 
     }
 

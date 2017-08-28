@@ -48,9 +48,11 @@
 
 
             </div>
+
+            <input type="hidden" name="id" id="groupId" value="{$id}">
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
-                    <button id="send" type="submit" class="btn btn-success ajax-post" target-form="form-horizontal">提交</button>
+                    <button id="send" type="button" class="btn btn-success " target-form="form-horizontal">提交</button>
                     <button type="button" class="btn btn-primary return-back">取消</button>
                 </div>
             </div>
@@ -68,7 +70,10 @@
         $('#menus').jstree({
             "state" : { "selected" : true },
             "checkbox" :{
-                "keep_selected_style" : true
+                "keep_selected_style" : false,
+                "check_node": [97]
+//                "whole_node": true,
+//                'three_state' : false  //是否 级联选中向下的菜单
             },
             "plugins":["checkbox"],
         });
@@ -76,11 +81,55 @@
 
         $("#send").click(function () {
 
-            var checkedNode = $("#menus").jstree('get_checked');
-            var a = $("#menus").jstree('get_top_checked');
-            console.log("********************************************************");
-//            console.log(a);
-            console.log(checkedNode);
+            var nodes = $("#menus").jstree('get_checked');
+
+            $(this).addClass('disabled').attr('autocomplete', 'off').prop('disabled', true);
+            $.ajax({
+                url:"{url('/admin/access/access')}",
+                type:"POST",
+                data:{
+                    nodes:nodes,
+                    id:$("#groupId").val()
+                },
+                dataType:"json",
+                success:function(data){
+
+                    if (data.code == 1) {
+                        if (data.url) {
+                            updateAlert(data.msg + ' 页面即将自动跳转~', 'success');
+                        } else {
+                            updateAlert(data.msg, 'success');
+                        }
+                        setTimeout(function() {
+                            $(this).removeClass('disabled').prop('disabled', false);
+                            if (data.url) {
+                                location.href = data.url;
+                            } else {
+                                location.reload();
+                            }
+                        }, 1500);
+                    } else {
+                        updateAlert(data.msg, 'danger');
+                        setTimeout(function() {
+                            $(this).removeClass('disabled').prop('disabled', false);
+
+                        }, 1500);
+                    }
+
+
+
+                }
+            });
+
+
+//            $.post("{:url('/admin/grouplist',['type'=>4])}",{rules:nodes},function (data) {
+//                layer.msg(data.msg, {time: 1500}, function () {
+//                    if (data.code) {
+//                        window.location.reload();
+//                    }
+//                });
+//            });
+            console.log(nodes);
         })
 
     });

@@ -12,7 +12,7 @@ use app\common\model\Base;
 
 class Group extends Base
 {
-    protected $name = 'auth_group'; //不包含前缀的数据库表名
+    protected $name = 'group'; //不包含前缀的数据库表名
     protected $resultSetType = 'collection';
 
 }

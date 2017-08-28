@@ -49,7 +49,7 @@ class User extends Base
 
     public function getGroupName($value, $data)
     {
-        $g = GroupAccess::get($data['id'])->toArray();
+        $g = AuthGroup::get($data['id'])->toArray();
         $groupId = $g->group_id;
         $group = Group::get($groupId)->toArray();
 

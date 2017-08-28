@@ -20,6 +20,7 @@ class Base extends \think\Controller
 
     public function _initialize()
     {
+
         $this->requestInfo();
     }
 

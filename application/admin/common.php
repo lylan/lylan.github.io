@@ -46,8 +46,22 @@ function is_login()
 function is_administrator($uid = null)
 {
     $uid = is_null($uid) ? is_login() : $uid;
-    $group = \app\admin\model\GroupAccess::get($uid);
+    $group = \app\admin\model\AuthGroup::get($uid);
 
     return $group && ($group->group_id == 1);
 
+}
+
+/**
+ * 根据用户ID获取用户名
+ * @param  integer $uid 用户ID
+ * @return string       用户名
+ */
+function get_username($uid = 0) {
+    if (!($uid && is_numeric($uid))) {
+        //获取当前登录用户名
+        return session('user_auth.username');
+    }
+    $name = db('user')->where(array('id' => $uid))->value('username');
+    return $name;
 }

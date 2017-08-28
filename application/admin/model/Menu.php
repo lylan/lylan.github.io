@@ -15,4 +15,8 @@ class Menu extends Base
 
     protected $name = 'menu';
     protected $resultSetType = 'collection';
+
+
+
+
 }

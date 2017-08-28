@@ -21,7 +21,7 @@ class Admin extends Base
 
 
         if (!is_login() && !in_array($this->url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
-            $this->redirect('/admin/index/login');
+            $this->redirect('/admin/login');
         }
 
         if (!in_array($this->url, array('admin/index/login', 'admin/index/logout', 'admin/index/verify'))) {
